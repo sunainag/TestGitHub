@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <import resource="include.xml"/>
+    
+	<bean id="student" class="com.spring.model.Student" autowire="byName">
+		<!-- <constructor-arg index="0" value="10" />
+		<constructor-arg index="1" value="Sunaina" />
+		<constructor-arg index="2" ref="address" /> -->
+		<property name="age" value="10" />
+		<property name="name" value="Sunaina" />
+		
+	</bean>
+
+	<bean id="address" class="com.spring.model.Address">
+		<property name="address" value="Sector 21, Gurgaon" />
+		<property name="pinCode" value="122016" />
+	</bean>
+
+	<bean id="demo" class="com.spring.model.DemoBean">
+		<!-- <constructor-arg value="Constructor injection is preferred over setter injection" /> -->
+		<property name="message" value="Setter injection is preferred over Constructor injection" />
+		<property name="dummy" ref="dummy"/>
+	</bean>
+	
+	<bean id="dummy" class="com.spring.model.DemoDependency">
+		<property name="demoBean" ref="demo"/>
+	</bean>
+</beans>
