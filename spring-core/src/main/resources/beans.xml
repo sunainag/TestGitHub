@@ -9,39 +9,26 @@
 	<bean id="student" class="com.sapient.model.Student">
 		<property name="age" value="10" />
 		<property name="name" value="Sunaina" />
-		<property name="addressList">
-			<list>
-				<value>Gurgaon</value>
-				<value>Noida</value>
-				<value>Banglore</value>
-			</list>
-		</property>
-		<property name="addressSet">
+		<property name="subjects">
 			<set>
-				<value>INDIA</value>
-				<value>BANGLADESH</value>
-				<value>NEPAL</value>
+				<value>English</value>
+				<value>Hindi</value>
+				<value>Punjabi</value>
 			</set>
 		</property>
-		<property name="addressMap">
-			<map>
-				<entry key="1" value="UP" />
-				<entry key="2" value="Haryana" />
-				<entry key="3" value="Delhi" />
-			</map>
-		</property>
-		<property name="addressProp">
-			<props>
-				<prop key="one">india</prop>
-				<prop key="two">bangladesh</prop>
-				<prop key="three">nepal</prop>
-			</props>
-		</property>
 	</bean>
-	
-	<bean id="scienceStudent" class="com.sapient.model.Student" parent="student">
+
+	<bean id="scienceStudent" class="com.sapient.model.Student"
+		parent="student">
 		<property name="age" value="12" />
 		<property name="name" value="Sahil" />
+		<property name="subjects">
+			<set merge="true">
+				<value>Science</value>
+				<value>Hindi</value>
+				<value>Punjabi</value>
+			</set>
+		</property>
 	</bean>
-	
+
 </beans>

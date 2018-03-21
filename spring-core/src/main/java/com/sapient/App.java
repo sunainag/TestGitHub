@@ -9,7 +9,6 @@ public class App
     public static void main( String[] args )
     {
     	AbstractApplicationContext  ctx = new ClassPathXmlApplicationContext("beans.xml");
-    	
 		/*
 		 * Student student = ctx.getBean(Student.class);
 		 * org.springframework.beans.factory.NoUniqueBeanDefinitionException: No
@@ -21,20 +20,12 @@ public class App
 		 * So use @Qualifier
 		 */
     	
+    	System.out.println("******parent bean ******");
     	Student student = (Student)ctx.getBean("student");
-    	
-    	System.out.println("*******printing list of address************");
-    	student.getAddressList().forEach(item->System.out.println(item));
-    	System.out.println("*******printing set of address*************");
-    	student.getAddressSet().forEach(System.out::println);
-    	System.out.println("*******printing map of address*************");
-    	student.getAddressMap().forEach((k,v)->System.out.println(k+","+v));
-    	System.out.println("*******printing properties of address*************");
-    	student.getAddressProp().forEach((k,v)->System.out.println(k+","+v));
-    	
+    	student.getSubjects();
+    	System.out.println("**********child bean *****");
     	Student scienceStudent = (Student)ctx.getBean("scienceStudent");
-    	System.out.println("******student's name is ******\n"+student.getName());
-    	System.out.println("**********science student's name is *****\n"+scienceStudent.getName());
+    	scienceStudent.getSubjects();
         ctx.registerShutdownHook();
     }
 }
