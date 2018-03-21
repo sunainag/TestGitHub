@@ -1,5 +1,7 @@
 package com.sapient.model.circularDependency;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -7,22 +9,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class CircularDependencyA {
 	
+	@Autowired
 	CircularDependencyB b;
-	
-	public CircularDependencyA() {
-	}
-	
-	public CircularDependencyA(CircularDependencyB b) {
-		this.b=b;
+	 
+	@PostConstruct
+	public void init() {
+		b.setA(this);
 	}
 	
 	public CircularDependencyB getB() {
 		return b;
-	}
-
-	@Autowired
-	public void setB(CircularDependencyB b) {
-		this.b = b;
 	}
 
 }
