@@ -1,35 +1,41 @@
 package com.sapient.model.circularDependency;
 
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CircularDependencyA implements ApplicationContextAware,InitializingBean{
+public class CircularDependencyA implements ApplicationContextAware,BeanPostProcessor{
 	
 	private CircularDependencyB b;
 	private ApplicationContext context;
 
 	public CircularDependencyB getB() {
-		System.out.println("A's getter");
 		return b;
 	}
 
-	public void afterPropertiesSet() throws Exception {
-		System.out.println("A's afterproperties called");
+	/*public void afterPropertiesSet() throws Exception {
 		b=this.context.getBean(CircularDependencyB.class);
-		System.out.println("A's afterproperties ends");
-	}
+	}*/
 
 	public void setApplicationContext(ApplicationContext ctx) throws BeansException {
-		System.out.println("A's setApplicationContext called");
 		this.context=ctx;
-		System.out.println("A's setApplicationContext ends");
 	}
 
 	public void getMessageFromA() {
 		System.out.println("I received an object of A");;
+	}
+
+	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		System.out.println("postProcessAfterInitialization of class A");
+		return b;
+	}
+
+	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		System.out.println("postProcessBeforeInitialization of class A");
+		b = context.getBean(CircularDependencyB.class);
+		return b;
 	}
 }

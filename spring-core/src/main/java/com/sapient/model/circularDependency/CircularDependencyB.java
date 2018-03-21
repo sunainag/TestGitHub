@@ -15,7 +15,8 @@ public class CircularDependencyB {
 
 	@Autowired
 	public void setA(CircularDependencyA a) {
-		System.out.println("B's setter");
+		System.out.println("Set object A in class B");
+		a.getMessageFromA();
 		this.a = a;
 	}
 	
