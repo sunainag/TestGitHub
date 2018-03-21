@@ -6,7 +6,9 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
     
-    <import resource="include.xml"/>
+    <context:component-scan base-package="com.sapient"/>
+    <context:annotation-config/>
+    <!-- <import resource="include.xml"/> -->
     
 	<bean id="student" class="com.sapient.model.Student" autowire="byName">
 		<!-- <constructor-arg index="0" value="10" />
