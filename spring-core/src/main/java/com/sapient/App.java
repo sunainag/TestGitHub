@@ -12,5 +12,7 @@ public class App
         ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
         CircularDependencyA circA = ctx.getBean(CircularDependencyA.class);
         circA.getB().getMessage();
+        circA.getB().checkCircularDependency();
+        
     }
 }
