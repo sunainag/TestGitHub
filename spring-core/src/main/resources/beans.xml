@@ -10,7 +10,7 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<bean id="studentOne" class="com.sapient.model.Student">
+	<bean id="studentOne" class="com.sapient.model.Student" factory-method="createStudentInstance">
 		<constructor-arg name="id" value="1" />
 		<constructor-arg name="name" value="Sunaina" />
 		<property name="idAddressMap" ref="idAddressMap"/>

@@ -7,8 +7,8 @@ public class Student {
 	private int id;
 	private String name;
 	private Map<Integer, String> idAddressMap;
-
-	public Student(int id, String name) {
+	
+	private Student(int id, String name) {
 		this.id=id;
 		this.name=name;
 	}
@@ -20,5 +20,9 @@ public class Student {
 	public void printDetails() {
 		System.out.println("name:"+this.name);
 		System.out.println("address:"+this.idAddressMap.get(this.id));
+	}
+	
+	public static Student createStudentInstance(int id,String name) {
+		return new Student(id, name);
 	}
 }
