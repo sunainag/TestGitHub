@@ -5,21 +5,43 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
-    
-    <context:component-scan base-package="com.sapient"/>
-    <context:annotation-config/>
 
 	<bean id="student" class="com.sapient.model.Student">
-		<!-- <constructor-arg index="0" value="10" />
-		<constructor-arg index="1" value="Sunaina" />
-		<constructor-arg index="2" ref="address" /> -->
 		<property name="age" value="10" />
 		<property name="name" value="Sunaina" />
-		<property name="address">
-			<bean class="com.sapient.model.Address">
-				<property name="address" value="Sector 21, Gurgaon" />
-				<property name="pinCode" value="122016" />
-			</bean>
+		<property name="addressList">
+			<list>
+				<value>Gurgaon</value>
+				<value>Noida</value>
+				<value>Banglore</value>
+			</list>
+		</property>
+		<property name="addressSet">
+			<set>
+				<value>INDIA</value>
+				<value>BANGLADESH</value>
+				<value>NEPAL</value>
+			</set>
+		</property>
+		<property name="addressMap">
+			<map>
+				<entry key="1" value="UP" />
+				<entry key="2" value="Haryana" />
+				<entry key="3" value="Delhi" />
+			</map>
+		</property>
+		<property name="addressProp">
+			<props>
+				<prop key="one">india</prop>
+				<prop key="two">bangladesh</prop>
+				<prop key="three">nepal</prop>
+			</props>
 		</property>
 	</bean>
+	
+	<bean id="scienceStudent" class="com.sapient.model.Student" parent="student">
+		<property name="age" value="12" />
+		<property name="name" value="Sahil" />
+	</bean>
+	
 </beans>
