@@ -10,27 +10,11 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<bean id="studentOne" class="com.sapient.model.Student" factory-method="createStudentInstance">
-		<constructor-arg name="id" value="1" />
-		<constructor-arg name="name" value="Sunaina" />
-		<property name="idAddressMap" ref="idAddressMap"/>
+	<context:annotation-config/>
+	
+	<bean id="studentOne" class="com.sapient.model.Student">
+		<property name="age" value="10" />
+		<!-- <property name="name" value="Sunaina" /> -->
 	</bean>
 	
-	<bean id="studentTwo" class="com.sapient.model.Student">
-		<constructor-arg name="id" value="2" />
-		<constructor-arg name="name" value="Sam" />
-		<property name="idAddressMap" ref="idAddressMap"/>
-	</bean>
-	
-	<bean id="studentThree" class="com.sapient.model.Student">
-		<constructor-arg name="id" value="3" />
-		<constructor-arg name="name" value="Su" />
-		<property name="idAddressMap" ref="idAddressMap"/>
-	</bean>
-	
-	<util:map id="idAddressMap" key-type="java.lang.Integer" value-type="java.lang.String" map-class="java.util.HashMap">
-		<entry key="1" value="Gurgaon"/>
-		<entry key="2" value="Noida"/>
-		<entry key="3" value="Delhi"/>
-	</util:map>
 </beans>
