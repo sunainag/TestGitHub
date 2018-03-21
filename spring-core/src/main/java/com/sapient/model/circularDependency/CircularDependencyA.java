@@ -4,9 +4,8 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class CircularDependencyA implements ApplicationContextAware,BeanPostProcessor{
 	
 	private CircularDependencyB b;

@@ -7,7 +7,7 @@ public class Student {
 	private Address address;
 	
 	public Student() {
-		System.out.println("In no-arg constructor of student.");
+		System.out.println("setter injection requires no-arg constructor");
 	}
 	
 	public Student(Integer age, String name, Address add) {
@@ -29,12 +29,12 @@ public class Student {
 
 
 	public String getName() {
-		return name+" Now in getName()";
+		return name;
 	}
 
 
 	public void setName(String name) {
-		this.name = name+"- In setName(..).";
+		this.name = name;
 	}
 
 
