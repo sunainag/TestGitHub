@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/util 
+    http://www.springframework.org/schema/util/spring-util.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<bean id="student" class="com.sapient.model.Student">
-		<property name="age" value="10" />
-		<property name="name" value="Sunaina" />
-		<property name="subjects">
-			<set>
-				<value>English</value>
-				<value>Hindi</value>
-				<value>Punjabi</value>
-			</set>
-		</property>
+	<bean id="studentOne" class="com.sapient.model.Student">
+		<constructor-arg name="id" value="1" />
+		<constructor-arg name="name" value="Sunaina" />
+		<property name="idAddressMap" ref="idAddressMap"/>
 	</bean>
-
-	<bean id="scienceStudent" class="com.sapient.model.Student"
-		parent="student">
-		<property name="age" value="12" />
-		<property name="name" value="Sahil" />
-		<property name="subjects">
-			<set merge="true">
-				<value>Science</value>
-				<value>Hindi</value>
-				<value>Punjabi</value>
-			</set>
-		</property>
+	
+	<bean id="studentTwo" class="com.sapient.model.Student">
+		<constructor-arg name="id" value="2" />
+		<constructor-arg name="name" value="Sam" />
+		<property name="idAddressMap" ref="idAddressMap"/>
 	</bean>
-
+	
+	<bean id="studentThree" class="com.sapient.model.Student">
+		<constructor-arg name="id" value="3" />
+		<constructor-arg name="name" value="Su" />
+		<property name="idAddressMap" ref="idAddressMap"/>
+	</bean>
+	
+	<util:map id="idAddressMap" key-type="java.lang.Integer" value-type="java.lang.String" map-class="java.util.HashMap">
+		<entry key="1" value="Gurgaon"/>
+		<entry key="2" value="Noida"/>
+		<entry key="3" value="Delhi"/>
+	</util:map>
 </beans>

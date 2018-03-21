@@ -1,31 +1,24 @@
 package com.sapient;
 
-import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import org.springframework.core.io.ClassPathResource;
 import com.sapient.model.Student;
 
 public class App 
 {
     public static void main( String[] args )
     {
-    	AbstractApplicationContext  ctx = new ClassPathXmlApplicationContext("beans.xml");
-		/*
-		 * Student student = ctx.getBean(Student.class);
-		 * org.springframework.beans.factory.NoUniqueBeanDefinitionException: No
-		 * qualifying bean of type [com.sapient.model.Student] is defined: expected
-		 * single matching bean but found 2: student,scienceStudent
-		 * 
-		 * System.out.println(student.getName());
-		 * 
-		 * So use @Qualifier
-		 */
-    	
-    	System.out.println("******parent bean ******");
-    	Student student = (Student)ctx.getBean("student");
-    	student.getSubjects();
-    	System.out.println("**********child bean *****");
-    	Student scienceStudent = (Student)ctx.getBean("scienceStudent");
-    	scienceStudent.getSubjects();
-        ctx.registerShutdownHook();
+    	DefaultListableBeanFactory bf= new DefaultListableBeanFactory();
+		XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(bf);
+		reader.loadBeanDefinitions(new ClassPathResource("beans.xml"));
+    	System.out.println("******id:1, name:Sunaina ******");
+    	Student one = (Student)bf.getBean("studentOne");
+    	one.printDetails();
+    	System.out.println();
+    	System.out.println("*********id:2, name:Sam *****");
+    	Student two = (Student)bf.getBean("studentTwo");
+    	two.printDetails();
     }
 }

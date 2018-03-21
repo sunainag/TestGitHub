@@ -1,30 +1,24 @@
 package com.sapient.model;
 
-import java.util.Set;
+import java.util.Map;
 
 public class Student {
-	
-	private Integer age;
+
+	private int id;
 	private String name;
-	private Set subjects;
-	public Integer getAge() {
-		return age;
+	private Map<Integer, String> idAddressMap;
+
+	public Student(int id, String name) {
+		this.id=id;
+		this.name=name;
 	}
-	public void setAge(Integer age) {
-		this.age = age;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public Set getSubjects() {
-		subjects.forEach(System.out::println);
-		return subjects;
-	}
-	public void setSubjects(Set subjects) {
-		this.subjects = subjects;
+	
+	public void setIdAddressMap(Map<Integer, String> idAddressMap) {
+		this.idAddressMap = idAddressMap;
 	}
 
+	public void printDetails() {
+		System.out.println("name:"+this.name);
+		System.out.println("address:"+this.idAddressMap.get(this.id));
+	}
 }
