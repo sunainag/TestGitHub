@@ -1,5 +1,8 @@
 package com.sapient.model;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.context.ApplicationContext;
@@ -42,12 +45,14 @@ public class Address implements BeanNameAware, ApplicationContextAware{
 		System.out.println("ApplicationContextAware interface");
 	}
 	
+	@PostConstruct
 	public void init() {
-		System.out.println("init method");
+		System.out.println("@PostConstruct");
 	}
 	
+	@PreDestroy
 	public void destroy() {
-		System.out.println("destroy method");
+		System.out.println("@PreDestroy");
 	}
 	
 }
