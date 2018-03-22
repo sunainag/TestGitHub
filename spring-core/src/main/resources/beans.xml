@@ -17,7 +17,7 @@
 		<lookup-method name="getAddress" bean="address"/>
 	</bean>
 
-	<bean id="address" class="com.sapient.model.Address" scope="prototype">
+	<bean id="address" class="com.sapient.model.Address" scope="prototype"  init-method="init" destroy-method="destroy">
 		<property name="address" value="Gurgaon" />
 		<property name="pinCode" value="122016" />
 	</bean>
