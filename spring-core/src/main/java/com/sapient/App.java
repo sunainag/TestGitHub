@@ -11,9 +11,10 @@ public class App
     {
     	AbstractApplicationContext  ctx = new ClassPathXmlApplicationContext("beans.xml");
     	Student student = ctx.getBean(Student.class);
-    	student.printDetails();
-    	student.printDetails();
-    	student.printDetails();
+    	Student student1 = ctx.getBean(Student.class);
+    	
+    	System.out.println(student==student1);
+    	System.out.println(student.getAddress()==student1.getAddress());
         ctx.registerShutdownHook();
     }
 }
