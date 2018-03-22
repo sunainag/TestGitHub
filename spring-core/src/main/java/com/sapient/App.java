@@ -11,6 +11,8 @@ public class App
     	AbstractApplicationContext  ctx = new ClassPathXmlApplicationContext("beans.xml");
     	Student student = (Student)ctx.getBean("student");
     	student.printDetails();
+    	student.printDetails();
+    	student.printDetails();
         ctx.registerShutdownHook();
     }
 }

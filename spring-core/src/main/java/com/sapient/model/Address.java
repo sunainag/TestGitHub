@@ -1,12 +1,17 @@
 package com.sapient.model;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
 public class Address {
 
 	private String address;
 	private int pinCode;
+	
+	public Address() {
+		System.out.println("In Address constructor");
+	}
+	
 	public String getAddress() {
 		return address;
 	}
@@ -20,7 +25,7 @@ public class Address {
 		this.pinCode = pinCode;
 	}
 	
-	public String toString(){
-		return this.getAddress()+", "+this.getPinCode();
+	public String printAddress() {
+		return "Address printed.";
 	}
 }

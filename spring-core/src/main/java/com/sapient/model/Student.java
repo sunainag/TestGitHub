@@ -1,14 +1,10 @@
 package com.sapient.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-
 public class Student {
 
 	private int age;
 	private String name;
-	@Autowired
-	@Qualifier("address2")
+	
 	private Address address;
 
 	public int getAge() {
@@ -31,10 +27,12 @@ public class Student {
 		return address;
 	}
 
+	public void setAddress(Address add) {
+		this.address=add;
+	}
+	
 	public void printDetails() {
-		System.out.println("name:"+this.name);
-		System.out.println("age:"+this.age);
-		System.out.println("address:"+this.getAddress());
+		System.out.println("address:"+this.address.printAddress());
 	}
 	
 }
