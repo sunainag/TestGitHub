@@ -9,8 +9,10 @@ public class CircularDependencyB {
 	private CircularDependencyA a;
 	private String message = "Hi!";
 
-	public CircularDependencyB() {
+	@Autowired
+	public CircularDependencyB(CircularDependencyA a) {
 		System.out.println("B's constructor");
+		this.a=a;
 	}
 	
 	public void getMessage() {
