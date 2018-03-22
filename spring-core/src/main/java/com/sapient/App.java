@@ -9,8 +9,8 @@ public class App
     public static void main( String[] args )
     {
     	AbstractApplicationContext  ctx = new ClassPathXmlApplicationContext("beans.xml");
-    	Student one = (Student)ctx.getBean("studentOne");
-    	
+    	Student student = (Student)ctx.getBean("student");
+    	student.printDetails();
         ctx.registerShutdownHook();
     }
 }
