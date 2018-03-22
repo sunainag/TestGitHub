@@ -1,6 +1,9 @@
 package com.sapient.model;
 
-public class Student {
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+
+public class Student implements InitializingBean, DisposableBean{
 
 	private int age;
 	private String name;
@@ -33,6 +36,16 @@ public class Student {
 	
 	public void printDetails() {
 		System.out.println("address:"+this.getAddress().printAddress());
+	}
+
+	@Override
+	public void destroy() throws Exception {
+		System.out.println("In destroy method");
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		System.out.println("in afterpropertiesSet method");
 	}
 	
 }
