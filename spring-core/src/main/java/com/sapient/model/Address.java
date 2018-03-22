@@ -14,14 +14,14 @@ public class Address implements BeanNameAware, ApplicationContextAware{
 	private int pinCode;
 	
 	public Address() {
-		System.out.println("Create Address instance");
+		System.out.println("Address constructor");
 	}
 	
 	public String getAddress() {
 		return address;
 	}
 	public void setAddress(String address) {
-		System.out.println("Setting address properties");
+		System.out.println("setAddress in class Address");
 		this.address = address;
 	}
 	public int getPinCode() {
@@ -47,12 +47,12 @@ public class Address implements BeanNameAware, ApplicationContextAware{
 	
 	@PostConstruct
 	public void init() {
-		System.out.println("@PostConstruct");
+		System.out.println("@PostConstruct of Address");
 	}
 	
 	@PreDestroy
 	public void destroy() {
-		System.out.println("@PreDestroy");
+		System.out.println("@PreDestroy of Address");
 	}
 	
 }

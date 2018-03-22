@@ -10,16 +10,6 @@
     http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:annotation-config />
-
-	<bean id="student" class="com.sapient.model.Student">
-		<property name="age" value="10" />
-		<property name="name" value="Sunaina" />
-		<lookup-method name="getAddress" bean="address"/>
-	</bean>
-
-	<bean id="address" class="com.sapient.model.Address" scope="prototype">
-		<property name="address" value="Gurgaon" />
-		<property name="pinCode" value="122016" />
-	</bean>
+	<context:component-scan base-package="com.sapient"></context:component-scan>
 	
 </beans>

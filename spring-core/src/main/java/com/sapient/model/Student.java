@@ -1,13 +1,17 @@
 package com.sapient.model;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class Student implements InitializingBean, DisposableBean{
 
 	private int age;
 	private String name;
 	
+	@Autowired
 	private Address address;
 
 	public int getAge() {
@@ -37,7 +41,12 @@ public class Student implements InitializingBean, DisposableBean{
 	public void printDetails() {
 		System.out.println("address:"+this.getAddress().printAddress());
 	}
-
+	
+	@PostConstruct
+	public void init(){
+		System.out.println("In @PostConstruct init of Student method: "+address.getAddress());
+	}
+	
 	@Override
 	public void destroy() throws Exception {
 		System.out.println("In destroy method");
