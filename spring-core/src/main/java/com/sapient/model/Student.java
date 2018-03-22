@@ -32,7 +32,7 @@ public class Student {
 	}
 	
 	public void printDetails() {
-		System.out.println("address:"+this.address.printAddress());
+		System.out.println("address:"+this.getAddress().printAddress());
 	}
 	
 }

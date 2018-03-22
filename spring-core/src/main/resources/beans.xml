@@ -14,7 +14,7 @@
 	<bean id="student" class="com.sapient.model.Student">
 		<property name="age" value="10" />
 		<property name="name" value="Sunaina" />
-		<property name="address" ref="address"></property>
+		<lookup-method name="getAddress" bean="address"/>
 	</bean>
 
 	<bean id="address" class="com.sapient.model.Address" scope="prototype">
