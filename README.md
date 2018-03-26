@@ -35,3 +35,12 @@ Then, how to differentiate the @Embedded Address objects for both. Then use @Att
 Refer https://www.youtube.com/watch?v=X8t6oYp0Uk8&list=PL4AFF701184976B25&index=11
 
 @EmbeddedId if we want to use an embeddable object as primary key: no need to use @id and @Embedded.
+
+
+//TODO:
+1.Builder pattern in User pojo
+2.Difference in get and load
+
+@CollectionId : hibernate annotation
+used to provide indexing to @ElementCollection table
+Reference: https://www.youtube.com/watch?v=kk207HAym_I&list=PL4AFF701184976B25&index=13
