@@ -29,3 +29,7 @@ Moreover, When you’re using an Embeddable type with Element Collection, you ca
 
 Natural primary key: primary key due to functional requirement, like email, login id
 Surrogate key: just to make the row unique, like serial number
+
+use @AttributeOverride: when a user has say two address members: office address and home address.
+Then, how to differentiate the @Embedded Address objects for both. Then use @AttributeOverride
+Refer https://www.youtube.com/watch?v=X8t6oYp0Uk8&list=PL4AFF701184976B25&index=11
