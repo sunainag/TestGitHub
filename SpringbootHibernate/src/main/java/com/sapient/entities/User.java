@@ -1,21 +1,18 @@
 package com.sapient.entities;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.CollectionTable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
+@Table(name = "users")
 public class User {
 
 	@Id
@@ -24,29 +21,26 @@ public class User {
 
 	private String name;
 
+	@Column(unique = true)
 	private String email;
 
-	@ElementCollection
-	@CollectionTable(name = "user_phone_numbers", joinColumns = @JoinColumn(name = "user_id"))
-	@Column(name = "phone_number")
-	private Set<String> phoneNumbers = new HashSet<>();
-
-	@ElementCollection
-	@CollectionTable(name = "user_address", joinColumns = @JoinColumn(name = "user_id"))
-	@AttributeOverrides({ @AttributeOverride(name = "addressLine1", column = @Column(name = "house_number")),
-			@AttributeOverride(name = "addressLine2", column = @Column(name = "street")) })
-	private Set<Address> addresses = new HashSet<>();
+	@OneToOne(fetch = FetchType.LAZY,
+            cascade =  CascadeType.ALL,
+            mappedBy = "user")
+	private UserProfile userProfile;
+	
+	@Transient
+	private String username;
 
 	public User() {
 		// TODO: Builder design pattern implementation
 	}
-
-	public User(String name, String email, Set<String> phoneNumbers, Set<Address> addresses) {
-		this.name = name;
-		this.email = email;
-		this.phoneNumbers = phoneNumbers;
-		this.addresses = addresses;
-	}
+	
+	public User(String name, String username, String email) {
+        this.name = name;
+        this.email = email;
+        this.username=username;
+    }
 
 	public Long getId() {
 		return id;
@@ -72,23 +66,20 @@ public class User {
 		this.email = email;
 	}
 
-	// @ElementCollection
-	// use an element collection to persist a Collection of value types.
-	public Set<String> getPhoneNumbers() {
-		return phoneNumbers;
+	public UserProfile getUserProfile() {
+		return userProfile;
 	}
 
-	public void setPhoneNumbers(Set<String> phoneNumbers) {
-		this.phoneNumbers = phoneNumbers;
+	public void setUserProfile(UserProfile userProfile) {
+		this.userProfile = userProfile;
 	}
 
-	@Embedded
-	public Set<Address> getAddresses() {
-		return addresses;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setAddresses(Set<Address> addresses) {
-		this.addresses = addresses;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }
