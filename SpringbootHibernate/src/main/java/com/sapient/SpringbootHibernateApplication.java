@@ -23,7 +23,7 @@ public class SpringbootHibernateApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// Cleanup database tables.
-        userRepository.deleteAll();
+        //userRepository.deleteAll();
         
 		Address address = new Address("street1a","street1b", "city1", "state1", "country1", "1234");
 		HashSet<Address> addresses = new HashSet<>();

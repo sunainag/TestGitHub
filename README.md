@@ -21,3 +21,8 @@ The element collection might seem easier to use than an entity with a one-to-man
 When you execute this code, Hibernate performs 2 SELECT statements to read the Author entity and the associated phoneNumbers. Then I add the second phoneNumber to the element collection. And Hibernate updates the Author entity, drops all associated phoneNumbers and inserts a new record for each phoneNumber.
 @CollectionTable 
 will join the two tables for the given primary and foreign key. 
+
+
+We use @ElementCollection annotation to declare an element-collection mapping. All the records of the collection are stored in a separate table. The configuration for this table is specified using the @CollectionTable annotation.
+The @CollectionTable annotation is used to specify the name of the table that stores all the records of the collection, and the JoinColumn that refers to the primary table.
+Moreover, When you’re using an Embeddable type with Element Collection, you can use the @AttributeOverrides and @AttributeOverride annotations to override/customize the fields of the embeddable type.
