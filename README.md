@@ -16,4 +16,6 @@ javax.persistence.GenerationType.Sequence
 Some database vendors support the use of a database sequence object for maintaining primary keys. To use a sequence, you set the GenerationType strategy to SEQUENCE, specify the name of the generator annotation, and then provide the @SequenceGenerator annotation that has attributes for defining both the name of the sequence annotation, and the name of the actual sequence object in the database.
 
 @ElementCollection
-use an element collection to persist a Collection of value types.
+use an element collection to persist a Collection of value types. You just need to annotate the attribute with @ElementCollection and the persistence provider will persist the elements of the Collection in an additional database table.
+The element collection might seem easier to use than an entity with a one-to-many association. But it has one major drawback: The elements of the collection have no id and Hibernate can’t address them individually.
+When you execute this code, Hibernate performs 2 SELECT statements to read the Author entity and the associated phoneNumbers. Then I add the second phoneNumber to the element collection. And Hibernate updates the Author entity, drops all associated phoneNumbers and inserts a new record for each phoneNumber.
