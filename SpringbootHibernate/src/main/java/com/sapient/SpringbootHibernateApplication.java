@@ -10,12 +10,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.sapient.dao.SpringBootHibernateRepository;
 import com.sapient.entities.Address;
 import com.sapient.entities.Employee;
+import com.sapient.entities.Student;
 
 @SpringBootApplication
 public class SpringbootHibernateApplication implements CommandLineRunner {
 
 	@Autowired
-	private SpringBootHibernateRepository myRepo;
+	private SpringBootHibernateRepository bootRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootHibernateApplication.class, args);
@@ -23,16 +24,26 @@ public class SpringbootHibernateApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		/*
-		 * Employee emp = getEmployee(); employeeRepo.save(emp);
-		 * 
-		 * Employee emp1 = new Employee(); emp1.setName("Sahil"); emp1.setSalary(new
-		 * Double(1400)); emp1.setDoj(new Date()); employeeRepo.save(emp1);
-		 */
+		
+		Address address = new Address("OMR Road", "Chennai", "TN", "India", "600097");
+		Student student = new Student("Eswar", address);
+		bootRepo.save(student);
+		
+		// Employee emp = getEmployee();
+		// bootRepo.save(emp);
+		// Employee emp1 = new Employee();
+		// emp1.setName("Sahil");
+		// emp1.setSalary(new Double(14000));
+		// emp1.setDoj(new Date());
+		// bootRepo.save(emp1);
 
-		Address address = new Address("address line 1","address line 2","city", "state", "country","1234");
-		//User person = new User("John Doe", address);
-		myRepo.save(address);
+		// Address address = new Address("address line 1","address line 2","city",
+		// "state", "country","1234");
+		/*
+		 * HashSet addresses = new HashSet(); addresses.add(address); HashSet phoneNums
+		 * = new HashSet(); phoneNums.add("123"); User person = new
+		 * User("John Doe","email", phoneNums,addresses);
+		 */
 	}
 
 	private Employee getEmployee() {
