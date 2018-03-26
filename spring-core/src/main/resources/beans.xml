@@ -11,12 +11,12 @@
 
 	<context:annotation-config />
 
-	<bean id="student" class="com.sapient.model.Student" scope="prototype">
+	<bean id="student" class="com.sapient.model.Student" >
 		<property name="age" value="10" />
 		<property name="name" value="Sunaina" />
 	</bean>
 
-	<bean id="address" class="com.sapient.model.Address">
+	<bean id="address" class="com.sapient.model.Address" scope="prototype">
 		<property name="address" value="Gurgaon" />
 		<property name="pinCode" value="122016" />
 	</bean>
