@@ -1,4 +1,4 @@
-package com.sapient.SpringbootHibernate;
+package com.sapient;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
