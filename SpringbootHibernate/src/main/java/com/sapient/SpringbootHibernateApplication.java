@@ -7,29 +7,32 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.sapient.dao.EmployeeRepository;
+import com.sapient.dao.SpringBootHibernateRepository;
+import com.sapient.entities.Address;
 import com.sapient.entities.Employee;
 
 @SpringBootApplication
-public class SpringbootHibernateApplication implements CommandLineRunner{
+public class SpringbootHibernateApplication implements CommandLineRunner {
 
 	@Autowired
-	private EmployeeRepository employeeRepo;
+	private SpringBootHibernateRepository myRepo;
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootHibernateApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		Employee emp = getEmployee();
-		employeeRepo.save(emp);
-		
-		Employee emp1 = new Employee();
-		emp1.setName("Sahil");
-		emp1.setSalary(new Double(1400));
-		emp1.setDoj(new Date());
-		employeeRepo.save(emp1);
-		
+		/*
+		 * Employee emp = getEmployee(); employeeRepo.save(emp);
+		 * 
+		 * Employee emp1 = new Employee(); emp1.setName("Sahil"); emp1.setSalary(new
+		 * Double(1400)); emp1.setDoj(new Date()); employeeRepo.save(emp1);
+		 */
+
+		Address address = new Address("address line 1","address line 2","city", "state", "country","1234");
+		//User person = new User("John Doe", address);
+		myRepo.save(address);
 	}
 
 	private Employee getEmployee() {
