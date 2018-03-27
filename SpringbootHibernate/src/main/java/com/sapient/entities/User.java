@@ -38,9 +38,6 @@ public class User {
 	@JoinTable(name="user_assets")
 	private Set<Asset> assets = new HashSet<>();
 	
-//	@Transient
-//	private String username;
-
 	public User() {
 		// TODO: Builder design pattern implementation
 	}
@@ -81,14 +78,6 @@ public class User {
 	public void setUserProfile(UserProfile userProfile) {
 		this.userProfile = userProfile;
 	}
-
-//	public String getUsername() {
-//		return username;
-//	}
-//
-//	public void setUsername(String username) {
-//		this.username = username;
-//	}
 
 	public Set<Asset> getAssets() {
 		return assets;
