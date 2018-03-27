@@ -38,17 +38,16 @@ public class User {
 	@JoinTable(name="user_assets")
 	private Set<Asset> assets = new HashSet<>();
 	
-	@Transient
-	private String username;
+//	@Transient
+//	private String username;
 
 	public User() {
 		// TODO: Builder design pattern implementation
 	}
 	
-	public User(String name, String username, String email) {
+	public User(String name, String email) {
         this.name = name;
         this.email = email;
-        this.username=username;
     }
 
 	public Long getId() {
@@ -83,13 +82,13 @@ public class User {
 		this.userProfile = userProfile;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
+//	public String getUsername() {
+//		return username;
+//	}
+//
+//	public void setUsername(String username) {
+//		this.username = username;
+//	}
 
 	public Set<Asset> getAssets() {
 		return assets;

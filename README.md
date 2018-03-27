@@ -45,3 +45,18 @@ Refer https://www.youtube.com/watch?v=X8t6oYp0Uk8&list=PL4AFF701184976B25&index=
 used to provide indexing to @ElementCollection table : use a collection which supports indexing- like Arraylist
 @GenericGenerator(name="hilo-gen",strategy="hilo")
 Reference: https://www.youtube.com/watch?v=kk207HAym_I&list=PL4AFF701184976B25&index=13
+
+Hibernate Entity / Persistence LifeCycle States:
+Given an instance of an object that is mapped to Hibernate, it can be in any one of four different states: transient, persistent, detached, or removed
+1. Transient objects exist in heap memory. Hibernate does not manage transient objects or persist changes to transient objects.
+To persist the changes to a transient object, you would have to ask the session to save the transient object to the database, at which point Hibernate assigns the object an identifier and marks the object as being in persistent state.
+2. Persistent objects exist in the database, and Hibernate manages the persistence for persistent objects
+3. Detached objects have a representation in the database, but changes to the object will not be reflected in the database, and vice-versa
+4. Removed objects are objects that are being managed by Hibernate (persistent objects, in other words) that have been passed to the session’s remove() method. When the application marks the changes held in the session as to be committed, the entries in the database that correspond to removed objects are deleted.
+
+
+
+One-to-one mapping:	Either end can be made the owner, but one (and only one) of them should be; if you don’t specify this, you will end up with a circular dependency.
+One-to-many:	The many end must be made the owner of the association.
+Many-to-one:	This is the same as the one-to-many relationship viewed from the opposite perspective, so the same rule applies: the many end must be made the owner of the association.
+Many-to-many:	Either end of the association can be made the owner.

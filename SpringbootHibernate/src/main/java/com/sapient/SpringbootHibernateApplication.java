@@ -35,7 +35,7 @@ public class SpringbootHibernateApplication implements CommandLineRunner {
         userRepository.deleteAllInBatch();
 
         // Create a User instance
-        User user = new User("Rajeev", "rUsername","rajeev@callicoder.com");
+        User user = new User("Rajeev", "rajeev@callicoder.com");
         
         Asset a1 = new Asset("a1","a1 asset");
         Asset a2 = new Asset("a2","a2 asset");
@@ -51,13 +51,11 @@ public class SpringbootHibernateApplication implements CommandLineRunner {
                 "Karnataka", "India", "560008");
 
 
-        // Set child reference(userProfile) in parent entity(user)
-        user.setUserProfile(userProfile);
-
         // Set parent reference(user) in child entity(userProfile)
         userProfile.setUser(user);
 
         // Save Parent Reference (which will save the child as well)
+        userRepository.save(user);
         userProfileRepository.save(userProfile);
         
         List<UserProfile> userProfiles = userProfileRepository.findAll();
