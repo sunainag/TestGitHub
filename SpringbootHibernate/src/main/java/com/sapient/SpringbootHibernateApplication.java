@@ -58,10 +58,9 @@ public class SpringbootHibernateApplication implements CommandLineRunner {
         userProfile.setUser(user);
 
         // Save Parent Reference (which will save the child as well)
-        userRepository.save(user);
+        userProfileRepository.save(userProfile);
         
-        List<User> users = userRepository.findAll();
-        System.out.println(users.get(0).getUserProfile().getCity());
-        System.out.println(users.get(0).getAssets().size());
+        List<UserProfile> userProfiles = userProfileRepository.findAll();
+        System.out.println(userProfiles.get(0).getUser().getName());
 	}
 }
