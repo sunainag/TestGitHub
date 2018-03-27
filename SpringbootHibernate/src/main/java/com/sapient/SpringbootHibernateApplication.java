@@ -10,10 +10,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.sapient.dao.UserProfileRepository;
 import com.sapient.dao.UserRepository;
+import com.sapient.dao.VehicleRepository;
 import com.sapient.entities.Asset;
 import com.sapient.entities.Gender;
 import com.sapient.entities.User;
 import com.sapient.entities.UserProfile;
+import com.sapient.entities.Vehicle;
 
 @SpringBootApplication
 public class SpringbootHibernateApplication implements CommandLineRunner {
@@ -23,6 +25,9 @@ public class SpringbootHibernateApplication implements CommandLineRunner {
 
     @Autowired
     private UserProfileRepository userProfileRepository;
+    
+    @Autowired
+    private VehicleRepository vehicleRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootHibernateApplication.class, args);
@@ -53,12 +58,22 @@ public class SpringbootHibernateApplication implements CommandLineRunner {
 
         // Set parent reference(user) in child entity(userProfile)
         userProfile.setUser(user);
+        
+        //Set vehicle object
+        Vehicle v1 = new Vehicle();
+        v1.setName("Car");
 
+        Vehicle v2 = new Vehicle();
+        v2.setName("Jeep");
+
+        user.getVehicles().add(v1);
+        user.getVehicles().add(v2);
+        
         // Save Parent Reference (which will save the child as well)
+        vehicleRepository.save(v1);
+        vehicleRepository.save(v2);
         userRepository.save(user);
         userProfileRepository.save(userProfile);
         
-        List<UserProfile> userProfiles = userProfileRepository.findAll();
-        System.out.println(userProfiles.get(0).getUser().getName());
 	}
 }

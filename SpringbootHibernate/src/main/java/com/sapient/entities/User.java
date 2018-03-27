@@ -1,5 +1,7 @@
 package com.sapient.entities;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,13 +13,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user_details")
 public class User {
 
 	@Id
@@ -37,6 +40,10 @@ public class User {
 	@ElementCollection(fetch=FetchType.EAGER)
 	@JoinTable(name="user_assets")
 	private Set<Asset> assets = new HashSet<>();
+	
+	@OneToMany
+	@JoinTable(name="USER_VEHICLE",joinColumns=@JoinColumn(name="USER_ID"),inverseJoinColumns=@JoinColumn(name="VEHICLE_ID"))
+	private Collection<Vehicle> vehicles=new ArrayList<>();
 	
 	public User() {
 		// TODO: Builder design pattern implementation
@@ -85,6 +92,14 @@ public class User {
 
 	public void setAssets(Set<Asset> assets) {
 		this.assets = assets;
+	}
+
+	public Collection<Vehicle> getVehicles() {
+		return vehicles;
+	}
+
+	public void setVehicles(Collection<Vehicle> vehicles) {
+		this.vehicles = vehicles;
 	}
 
 }
