@@ -1,12 +1,17 @@
 package com.sapient.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -28,6 +33,10 @@ public class User {
             cascade =  CascadeType.ALL,
             mappedBy = "user")
 	private UserProfile userProfile;
+	
+	@ElementCollection
+	@JoinTable(name="user_assets")
+	private Set<Asset> assets = new HashSet<>();
 	
 	@Transient
 	private String username;
@@ -80,6 +89,14 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public Set<Asset> getAssets() {
+		return assets;
+	}
+
+	public void setAssets(Set<Asset> assets) {
+		this.assets = assets;
 	}
 
 }

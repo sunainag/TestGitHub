@@ -1,6 +1,7 @@
 package com.sapient;
 
 import java.util.Calendar;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.sapient.dao.UserProfileRepository;
 import com.sapient.dao.UserRepository;
+import com.sapient.entities.Asset;
 import com.sapient.entities.Gender;
 import com.sapient.entities.User;
 import com.sapient.entities.UserProfile;
@@ -32,8 +34,13 @@ public class SpringbootHibernateApplication implements CommandLineRunner {
         userProfileRepository.deleteAllInBatch();
         userRepository.deleteAllInBatch();
 
-     // Create a User instance
+        // Create a User instance
         User user = new User("Rajeev", "rUsername","rajeev@callicoder.com");
+        
+        Asset a1 = new Asset("a1","a1 asset");
+        Asset a2 = new Asset("a2","a2 asset");
+        user.getAssets().add(a1);
+        user.getAssets().add(a2);
 
         Calendar dateOfBirth = Calendar.getInstance();
         dateOfBirth.set(1992, 7, 21);
@@ -52,6 +59,9 @@ public class SpringbootHibernateApplication implements CommandLineRunner {
 
         // Save Parent Reference (which will save the child as well)
         userRepository.save(user);
-
+        
+        List<User> users = userRepository.findAll();
+        System.out.println(users.get(0).getUserProfile().getCity());
+        System.out.println(users.get(0).getAssets().size());
 	}
 }

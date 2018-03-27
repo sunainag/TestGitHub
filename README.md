@@ -42,5 +42,6 @@ Refer https://www.youtube.com/watch?v=X8t6oYp0Uk8&list=PL4AFF701184976B25&index=
 2.Difference in get and load
 
 @CollectionId : hibernate annotation
-used to provide indexing to @ElementCollection table
+used to provide indexing to @ElementCollection table : use a collection which supports indexing- like Arraylist
+@GenericGenerator(name="hilo-gen",strategy="hilo")
 Reference: https://www.youtube.com/watch?v=kk207HAym_I&list=PL4AFF701184976B25&index=13
