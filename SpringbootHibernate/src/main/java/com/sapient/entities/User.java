@@ -34,7 +34,7 @@ public class User {
             mappedBy = "user")
 	private UserProfile userProfile;
 	
-	@ElementCollection
+	@ElementCollection(fetch=FetchType.EAGER)
 	@JoinTable(name="user_assets")
 	private Set<Asset> assets = new HashSet<>();
 	
