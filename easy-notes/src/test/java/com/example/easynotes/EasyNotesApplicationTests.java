@@ -1,9 +1,13 @@
 package com.example.easynotes;
 
+import java.net.URI;
+import java.util.Set;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
@@ -35,11 +39,20 @@ public class EasyNotesApplicationTests {
 
 	@Test
 	public void testPost() {
-		// The postForObject API
+		// The postForObject API - returns the resource itself
 		String resourceUrl = "http://localhost:8080/api/notes";
 		HttpEntity<Note> request = new HttpEntity<>(new Note("My first Note","Spring is awesome"));
 		Note note = restTemplate.postForObject(resourceUrl, request, Note.class);
 		System.out.println("Note from Post request is: "+note.getTitle());
+		
+		//post for location - returns the URI of the newly created resource
+		URI location = restTemplate.postForLocation(resourceUrl, request);
+		System.out.println("URI of newly created Note object: "+location);
+		
+		//options
+		Set<HttpMethod> options = restTemplate.optionsForAllow(resourceUrl);
+		System.out.println("Allowed operations on a specific URI :");
+		options.forEach(System.out::println);
 	}
 
 }
