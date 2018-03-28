@@ -42,7 +42,7 @@ public class User {
 	private Set<Asset> assets = new HashSet<>();
 	
 	@OneToMany
-	@JoinTable(name="USER_VEHICLE",joinColumns=@JoinColumn(name="USER_ID"),inverseJoinColumns=@JoinColumn(name="VEHICLE_ID"))
+	@JoinColumn(name="VEHICLE_ID")
 	private Collection<Vehicle> vehicles=new ArrayList<>();
 	
 	public User() {
