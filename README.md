@@ -45,7 +45,8 @@ what we want is that these fields should automatically get populated whenever we
 @ResponseBody annotation is used to indicate that the return value of a method should be used as the response body of the request.
 @PathVariable annotation, as the name suggests, is used to bind a path variable with a method parameter
 @DeleteMapping is a composed annotation that acts as a shortcut for @RequestMapping(method = RequestMethod.DELETE)
- 
+The postForObject API - returns the resource itself
+post for location - returns the URI of the newly created resource
  
 Hibernate:
 
