@@ -14,50 +14,45 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.easynotes.manager.NoteService;
+import com.example.easynotes.manager.NoteServiceImpl;
 import com.example.easynotes.model.Note;
-import com.example.easynotes.repository.NoteRepository;
 
 @RestController
 @RequestMapping("api")
 public class NoteController {
 	
 	@Autowired
-	NoteRepository noteRepository;
+	private NoteService noteService;
 
 	 // Get All Notes
 	@GetMapping("/notes")
 	public List<Note> getAllNotes(){
-		return noteRepository.findAll();
+		return noteService.getNotes();
 	}
 	
     // Create a new Note
-	@PostMapping(value="/notes", consumes={"text/plain", "application/*"})
+	@PostMapping(value="/notes", produces="application/json", consumes="application/json")
 	//@JsonRequestMapping
 	public ResponseEntity<?> createNote(@RequestBody Note note) {
-		return new ResponseEntity<Note>(noteRepository.save(note), HttpStatus.ACCEPTED);
+		return new ResponseEntity<Note>(noteService.createNote(note), HttpStatus.ACCEPTED);
 	}
 	
     // Get a Single Note
 	@GetMapping("/notes/{id}")
 	public Note getNoteById(@PathVariable(value="id") Long noteId) {
-		return noteRepository.findOne(noteId);//.orElseThrow(()->new ResourceNotFoundException("Note","id",noteId));
+		return noteService.getNoteById(noteId);//.orElseThrow(()->new ResourceNotFoundException("Note","id",noteId));
 	}
 	
     // Update a Note
 	@PutMapping("/notes/{id}")
 	public Note updateNote(@PathVariable("id") Long noteId, @RequestBody Note newNote) {
-		
-		Note note = noteRepository.findOne(noteId);//.orElseThrow(()->new ResourceNotFoundException("Note", "id", noteId));
-		note.setTitle(newNote.getTitle());
-		note.setContent(newNote.getContent());
-		
-		return noteRepository.save(note);
+		return noteService.updateNote(noteId, newNote);
 	}
 	
     // Delete a Note
 	@DeleteMapping("/notes/{id}")
 	public void deleteNote(@PathVariable("id") Long noteId) {
-		Note note = noteRepository.findOne(noteId);//.orElseThrow(()->new ResourceNotFoundException("Note", "id", noteId));
-		noteRepository.delete(note);
+		noteService.deleteNote(noteId);
 	}
 }

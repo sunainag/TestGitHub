@@ -18,11 +18,7 @@ import com.example.easynotes.model.Note;
 @SpringBootTest
 public class EasyNotesApplicationTests {
 	
-	RestTemplate restTemplate = new RestTemplate();
-
-	@Test
-	public void contextLoads() {
-	}
+	RestTemplate restTemplate = new RestTemplate();;
 
 	@Test
 	public void testGet() {
@@ -41,7 +37,7 @@ public class EasyNotesApplicationTests {
 	public void testPost() {
 		// The postForObject API - returns the resource itself
 		String resourceUrl = "http://localhost:8080/api/notes";
-		HttpEntity<Note> request = new HttpEntity<>(new Note("My first Note","Spring is awesome"));
+		HttpEntity<Note> request = new HttpEntity<>(new Note("Second Note","Spring boot"));
 		Note note = restTemplate.postForObject(resourceUrl, request, Note.class);
 		System.out.println("Note from Post request is: "+note.getTitle());
 		
