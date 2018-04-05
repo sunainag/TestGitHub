@@ -53,20 +53,23 @@ public class ThreadPoolExecutorExamples {
 		System.out.println("Maturity : " + maturityFuture.get()); 
 		
 		
-		ThreadPoolExecutor newFixedexecutor = 
-				  (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
-				newFixedexecutor.submit(() -> {
+		ThreadPoolExecutor executor = 
+				  (ThreadPoolExecutor) Executors.newCachedThreadPool();
+				executor.submit(() -> {
 				    Thread.sleep(1000);
 				    return null;
 				});
-				newFixedexecutor.submit(() -> {
+				executor.submit(() -> {
 				    Thread.sleep(1000);
 				    return null;
 				});
-				newFixedexecutor.submit(() -> {
+				executor.submit(() -> {
 				    Thread.sleep(1000);
 				    return null;
 				});
+				 
+				assertEquals(3, executor.getPoolSize());
+				assertEquals(0, executor.getQueue().size());
 				 
 	}
 
