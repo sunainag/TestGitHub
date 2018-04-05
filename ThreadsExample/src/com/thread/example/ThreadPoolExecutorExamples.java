@@ -7,6 +7,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class ThreadPoolExecutorExamples {
 
@@ -51,6 +52,22 @@ public class ThreadPoolExecutorExamples {
 
 		System.out.println("Maturity : " + maturityFuture.get()); 
 		
+		
+		ThreadPoolExecutor newFixedexecutor = 
+				  (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
+				newFixedexecutor.submit(() -> {
+				    Thread.sleep(1000);
+				    return null;
+				});
+				newFixedexecutor.submit(() -> {
+				    Thread.sleep(1000);
+				    return null;
+				});
+				newFixedexecutor.submit(() -> {
+				    Thread.sleep(1000);
+				    return null;
+				});
+				 
 	}
 
 }
