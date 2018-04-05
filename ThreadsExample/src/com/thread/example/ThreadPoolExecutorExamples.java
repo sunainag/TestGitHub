@@ -1,76 +1,30 @@
 package com.thread.example;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ThreadPoolExecutorExamples {
 
+	/*
+	 * ThreadPoolExecutor is decorated with an immutable wrapper, so it cannot be
+	 * reconfigured after creation. Note that also this is the reason we cannot cast
+	 * it to a ThreadPoolExecutor.
+	 */
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
-		Executor executor = Executors.newSingleThreadExecutor();
-		executor.execute(() -> System.out.println("Hello World"));
 
-		ExecutorService executorService = Executors.newFixedThreadPool(10);
-		Future<String> future = executorService.submit(() -> "Hello World");
-		// some operations
-		String result = future.get();
-		
-		Future future1 = executorService.submit(new Callable() {
+		AtomicInteger counter = new AtomicInteger();
 
-            public Object call() {
-                throw new RuntimeException("Unchecked exception");
-
-            }
-        });
-		// some operations
-		//Object result1 = future1.get();
-		
-		
-		Integer age = -1;
-
-		CompletableFuture<String> maturityFuture = CompletableFuture.supplyAsync(() -> {
-		    if(age < 0) {
-		        throw new IllegalArgumentException("Age can not be negative");
-		    }
-		    if(age > 18) {
-		        return "Adult";
-		    } else {
-		        return "Child";
-		    }
-		}).handle((res, ex) -> {
-		    if(ex != null) {
-		        System.out.println("Oops! We have an exception - " + ex.getMessage());
-		        return "Unknown!";
-		    }
-		    return res;
+		ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
+		singleThreadExecutor.submit(() -> {
+			counter.set(1);
+		});
+		singleThreadExecutor.submit(() -> {
+			counter.compareAndSet(1, 2);
 		});
 
-		System.out.println("Maturity : " + maturityFuture.get()); 
-		
-		
-		ThreadPoolExecutor executor = 
-				  (ThreadPoolExecutor) Executors.newCachedThreadPool();
-				executor.submit(() -> {
-				    Thread.sleep(1000);
-				    return null;
-				});
-				executor.submit(() -> {
-				    Thread.sleep(1000);
-				    return null;
-				});
-				executor.submit(() -> {
-				    Thread.sleep(1000);
-				    return null;
-				});
-				 
-				assertEquals(3, executor.getPoolSize());
-				assertEquals(0, executor.getQueue().size());
-				 
+		System.out.println(counter.get());
 	}
 
 }
