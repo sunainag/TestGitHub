@@ -41,9 +41,12 @@ public class ThreadPoolExecutorExamples {
 		    } else {
 		        return "Child";
 		    }
-		}).exceptionally(ex -> {
-		    System.out.println("Oops! We have an exception - " + ex.getMessage());
-		    return "Unknown!";
+		}).handle((res, ex) -> {
+		    if(ex != null) {
+		        System.out.println("Oops! We have an exception - " + ex.getMessage());
+		        return "Unknown!";
+		    }
+		    return res;
 		});
 
 		System.out.println("Maturity : " + maturityFuture.get()); 
