@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.springboot.model.Player;
 import com.example.springboot.model.Team;
 
-@RestController
+@RestController //ithnvoked correct HttpMessageConverter, based on requested format and jars in classpa
 public class HelloController {
 	
 	private Team team;
